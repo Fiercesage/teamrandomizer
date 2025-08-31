@@ -2,149 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team Randomizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Windows Optimizer — 50 Safe Tweaks</title>
   <style>
-    :root {
-      --bg: #0f0f0f;
-      --accent: #ff3c78;
-      --text: #f5f5f5;
-      --card: #1e1e1e;
-      --shadow: rgba(0, 0, 0, 0.2);
-    }
-
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #121212;
+      color: #f0f0f0;
       padding: 2rem;
+      max-width: 800px;
+      margin: auto;
     }
-
     h1 {
+      color: #00ffc3;
       font-size: 2.5rem;
       margin-bottom: 1rem;
-      color: var(--accent);
     }
-
-    .container {
-      max-width: 600px;
-      width: 100%;
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px var(--shadow);
-    }
-
-    textarea, input {
-      width: 100%;
-      padding: 0.8rem;
-      margin: 0.5rem 0;
-      border: none;
+    .tip {
+      background: #1e1e1e;
+      margin: 1rem 0;
+      padding: 1rem;
       border-radius: 8px;
-      font-size: 1rem;
-      background: #2c2c2c;
-      color: var(--text);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-
-    button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      margin: 0.5rem;
-      border-radius: 8px;
-      font-weight: bold;
+    .tip h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #00ffc3;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-
+    .tip p {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+    button {
+      background: #00ffc3;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
     button:hover {
-      background: #ff1f5c;
-    }
-
-    .teams {
-      margin-top: 1.5rem;
-    }
-
-    .team {
-      background: #2c2c2c;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .team h3 {
-      margin-top: 0;
-      color: var(--accent);
-    }
-
-    .ad-space {
-      margin-top: 2rem;
-      background: #333;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .container { padding: 1rem; }
+      background: #00cfa3;
     }
   </style>
 </head>
 <body>
-  <h1>Team Randomizer</h1>
-  <div class="container">
-    <textarea id="names" rows="6" placeholder="Enter names, one per line"></textarea>
-    <input type="number" id="teamCount" placeholder="Number of teams" min="2" />
-    <div>
-      <button onclick="generateTeams()">Generate</button>
-      <button onclick="copyTeams()">Copy</button>
-      <button onclick="resetForm()">Reset</button>
-    </div>
-    <div id="output" class="teams"></div>
-  </div>
+  <h1>🧠 Windows Optimizer</h1>
+  <p>50 safe tweaks to boost speed, clean junk, and improve performance.</p>
 
-  <div class="ad-space">
-    <!-- Replace with AdSense or other ad code -->
-    Your ad could be here. Stylish, unobtrusive, and effective.
-  </div>
+  <div id="tips"></div>
 
   <script>
-    function generateTeams() {
-      const names = document.getElementById("names").value.trim().split("\n").filter(n => n);
-      const teamCount = parseInt(document.getElementById("teamCount").value);
-      if (teamCount < 2 || names.length < teamCount) {
-        alert("Enter enough names and at least 2 teams.");
-        return;
-      }
+    const tips = [
+      "Update Windows and drivers regularly",
+      "Uninstall unused programs",
+      "Disable unnecessary startup apps",
+      "Run Disk Cleanup",
+      "Defragment HDD (skip SSD)",
+      "Adjust visual effects for performance",
+      "Pause OneDrive syncing",
+      "Scan for malware with Windows Defender",
+      "Use ReadyBoost with USB drive",
+      "Turn off background apps",
+      "Disable transparency effects",
+      "Clean browser cache",
+      "Limit system restore space",
+      "Disable Cortana (if unused)",
+      "Turn off tips and suggestions",
+      "Disable telemetry via Settings",
+      "Use Storage Sense to auto-clean",
+      "Disable Xbox Game Bar (if unused)",
+      "Turn off Bluetooth when not needed",
+      "Disable Fast Startup (if causing issues)",
+      "Check Task Manager for resource hogs",
+      "Use Task Scheduler to clean temp files",
+      "Clear Windows Update cache",
+      "Disable animations in Settings > Accessibility",
+      "Use lightweight antivirus",
+      "Remove bloatware with PowerShell",
+      "Disable Superfetch (SysMain) if slowing HDD",
+      "Limit background sync in apps",
+      "Use high performance power plan",
+      "Disable auto-start for Skype/Teams",
+      "Clean registry with trusted tool",
+      "Disable indexing on large folders",
+      "Empty recycle bin regularly",
+      "Use SSD for OS if possible",
+      "Disable notifications for unused apps",
+      "Turn off live tiles in Start menu",
+      "Reduce paging file size (advanced)",
+      "Disable remote assistance",
+      "Use minimal desktop wallpaper",
+      "Avoid desktop shortcuts overload",
+      "Disable unused services via Services.msc",
+      "Use CCleaner or Glary Utilities (carefully)",
+      "Limit Chrome extensions",
+      "Disable auto-update for non-critical apps",
+      "Use wired connection for faster internet",
+      "Disable USB selective suspend",
+      "Turn off location services",
+      "Disable Windows Ink Workspace",
+      "Use DNS cache flush (`ipconfig /flushdns`)",
+      "Restart PC weekly to refresh memory"
+    ];
 
-      const teams = Array.from({ length: teamCount }, () => []);
-      names.sort(() => Math.random() - 0.5);
-      names.forEach((name, i) => teams[i % teamCount].push(name));
+    const container = document.getElementById("tips");
 
-      let html = "";
-      teams.forEach((team, i) => {
-        html += `<div class="team"><h3>Team ${i + 1}</h3><ul>${team.map(n => `<li>${n}</li>`).join("")}</ul></div>`;
-      });
-      document.getElementById("output").innerHTML = html;
+    tips.forEach((tip, i) => {
+      const div = document.createElement("div");
+      div.className = "tip";
+      div.innerHTML = `
+        <h3 onclick="toggleTip(${i})">#${i + 1}: ${tip}</h3>
+        <p id="tip-${i}">${tip}</p>
+        <button onclick="copyTip('${tip}')">Copy</button>
+      `;
+      container.appendChild(div);
+    });
+
+    function toggleTip(i) {
+      const p = document.getElementById(`tip-${i}`);
+      p.style.display = p.style.display === "block" ? "none" : "block";
     }
 
-    function copyTeams() {
-      const output = document.getElementById("output").innerText;
-      navigator.clipboard.writeText(output).then(() => alert("Teams copied to clipboard!"));
-    }
-
-    function resetForm() {
-      document.getElementById("names").value = "";
-      document.getElementById("teamCount").value = "";
-      document.getElementById("output").innerHTML = "";
+    function copyTip(text) {
+      navigator.clipboard.writeText(text);
+      alert("Copied to clipboard!");
     }
   </script>
 </body>
